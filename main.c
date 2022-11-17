@@ -58,6 +58,8 @@ int main() {
         printf("Write function...");
     } else {
         // pass to delete
+
+        // this doesn't work :(
         //for (int i = 0; i < 32; i++) {
         //    if (filename[i] == ' ') {
         //        filename[i] = '\0';
@@ -65,6 +67,9 @@ int main() {
         //    }
         //}
         //delete(filename);
-        delete("test.txt");
+
+        // this works
+        //delete("test.txt");
+        delete((char *) filename);
     }
 }
