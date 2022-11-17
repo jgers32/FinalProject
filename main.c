@@ -7,9 +7,18 @@
 #include <unistd.h>
 
 #define BUFFER_SIZE 256
+
 // read function
 // sample output:   32:contents of file
 // fgets() and keep track of how many bytes you read
+
+// if file exists
+    // FILE *inputStream = fopen(filename, "r");
+    // save the contents of the file to a string
+    // count number of bytes
+    // return number: contents
+// if file doesn't exist
+    // return 0:
 
 
 // write function
@@ -36,10 +45,10 @@ int main() {
     printf("%s", call);
     //printf("%s\n", program);
 
-    if (strcmp(command, "read") == 0) {
-      // pass to read function
+    if (strcmp(call, "read") == 0) {
+        //read(filename);
 
-    } else if (strcmp(command, "write") == 0) {
+    } else if (strcmp(call, "write") == 0) {
         // pass to write
 
     } else {
