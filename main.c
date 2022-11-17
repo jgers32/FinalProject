@@ -60,16 +60,15 @@ int main() {
         // pass to delete
 
         // this doesn't work :(
-        //for (int i = 0; i < 32; i++) {
-        //    if (filename[i] == ' ') {
-        //        filename[i] = '\0';
-        //        break;
-        //    }
-        //}
-        //delete(filename);
+        for (int i = 0; i < 32; i++) {
+            if (filename[i] == '\n') {
+                filename[i] = '\0';
+                break;
+            }
+        }
+        delete(filename);
 
         // this works
         //delete("test.txt");
-        delete((char *) filename);
     }
 }
