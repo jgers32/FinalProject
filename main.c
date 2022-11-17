@@ -52,10 +52,10 @@ int main() {
 
     if (strcmp(command, "read") == 0) {
         // pass to read function
-        print("Read function...");
+        printf("Read function...");
     } else if (strcmp(command, "write") == 0) {
         // pass to write
-        print("Write function...");
+        printf("Write function...");
     } else {
         // pass to delete
         //for (int i = 0; i < 32; i++) {
