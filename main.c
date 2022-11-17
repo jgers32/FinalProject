@@ -40,7 +40,7 @@ int main() {
             // gets filename
             int count = 0;
             while (count < strlen(command) ) {
-                filename[count] = command[(i + 2) + count - 1];
+                filename[count] = command[(i + 1) + count - 1];
                 count++;
             }
             //filename[count] = '\0';
