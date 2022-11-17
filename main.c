@@ -43,16 +43,19 @@ int main() {
                 filename[count] = command[(i + 2) + count - 1];
                 count++;
             }
-            //filename[count] = '\0';
             printf("%s", filename);
+            command[i] = '\0';
+            //break;
         }
         // gives the rest to write
     }
 
     if (strcmp(command, "read") == 0) {
         // pass to read function
+        print("Read function...");
     } else if (strcmp(command, "write") == 0) {
         // pass to write
+        print("Write function...");
     } else {
         // pass to delete
         //for (int i = 0; i < 32; i++) {
