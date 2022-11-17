@@ -11,11 +11,12 @@
 // fgets() and keep track of how many bytes you read
 // write function
 // delete function
-void * delete(void * input) {
+void delete(char * input) {
     unlink(input);
 }
 
 int main() {
+    delete("blah");
     // gets input
     printf("enter command: ");
     char command[32];
