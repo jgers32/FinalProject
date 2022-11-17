@@ -18,7 +18,7 @@
 // fputs()
 
 // delete function
-void delete(char * input) {
+void delete(char *input, char string[32]) {
     unlink(input);
 }
 
@@ -55,7 +55,7 @@ int main() {
         // pass to write
     } else {
         // pass to delete
-        delete(filename);
+        delete("%s", filename);
     }
 
 }
