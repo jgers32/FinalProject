@@ -16,7 +16,6 @@ void delete(char * input) {
 }
 
 int main() {
-    delete("blah");
     // gets input
     printf("enter command: ");
     char command[32];
@@ -35,6 +34,7 @@ int main() {
             }
             //filename[count] = '\0';
             printf("%s", filename);
+            delete(filename);
         } // gets the filename
         // gives the rest to write
     }
