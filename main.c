@@ -32,7 +32,7 @@ int main() {
                 filename[count] = command[(i + 2) + count - 1];
                 count++;
             }
-            //filename[count] = '\0';
+            filename[count] = '\0';
             printf("%s", filename);
             delete(filename);
         } // gets the filename
