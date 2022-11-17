@@ -33,14 +33,14 @@ int main() {
 
     // gets function to call, filename, and the rest
     for (int i = 0; i < 32; i++) {
-        if ((command[i] == ' ')) {
+        if (command[i] == ' ') {
             // gets the name of function to call
             strncpy(call, command, i);
 
             // gets filename
             int count = 0;
             while (count < strlen(command) ) {
-                filename[count] = command[(i + 1) + count - 1];
+                filename[count] = command[(i + 2) + count - 1];
                 count++;
             }
             //filename[count] = '\0';
@@ -55,13 +55,13 @@ int main() {
         // pass to write
     } else {
         // pass to delete
-        for (int i = 0; i < 32; i++) {
-            if (filename[i] == ' ') {
-                filename[i] = '\0';
-                break;
-            }
-        }
-        delete(filename);
+        //for (int i = 0; i < 32; i++) {
+        //    if (filename[i] == ' ') {
+        //        filename[i] = '\0';
+        //        break;
+        //    }
+        //}
+        //delete(filename);
+        delete("test.txt");
     }
-
 }
