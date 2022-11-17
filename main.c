@@ -57,9 +57,7 @@ int main() {
         // pass to write
         printf("Write function...");
     } else {
-        // pass to delete
-
-        // this doesn't work :(
+        // remove newline character and pass to delete
         for (int i = 0; i < 32; i++) {
             if (filename[i] == '\n') {
                 filename[i] = '\0';
@@ -67,8 +65,5 @@ int main() {
             }
         }
         delete(filename);
-
-        // this works
-        //delete("test.txt");
     }
 }
