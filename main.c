@@ -26,29 +26,42 @@ int main() {
     char command[32];
     char *call = malloc(7);
     char filename[32];
+    char contents[32];
 
-    // gets input
+    // gets input -- in future this will be from the config file
     printf("Enter command: ");
     fgets(command, 32, stdin);
 
-    // gets function to call, filename, and the rest
+    // gets function to call & filename
     for (int i = 0; i < 32; i++) {
         if (command[i] == ' ') {
-            // gets the name of function to call
             strncpy(call, command, i);
-
-            // gets filename
             int count = 0;
             while (count < strlen(command) ) {
                 filename[count] = command[(i + 2) + count - 1];
                 count++;
             }
-            printf("%s", filename);
             command[i] = '\0';
-            //break;
+            break;
         }
-        // gives the rest to write
     }
+    // gets the contents for the write function
+    for (int i = 0; i < 32; i++) {
+        if (filename[i] == ' ') {
+            strncpy(contents, filename, i);
+            int count = 0;
+            while (count < strlen(filename) ) {
+                contents[count] = filename[(i + 2) + count - 1];
+                count++;
+            }
+            filename[i] = '\0';
+            break;
+        }
+    }
+
+    printf("function: %s\n", call);
+    printf("filename: %s\n", filename);
+    printf("contents: %s\n", contents);
 
     if (strcmp(command, "read") == 0) {
         // pass to read function
