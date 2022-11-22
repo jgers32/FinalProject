@@ -17,6 +17,7 @@
 // write function
 // fputs()
 void saveFile(char * filename, char * rest){
+    FILE *goHere = fopen(filename, "w");
     char * size = malloc(2);
     char * toSave = malloc(32);
 
@@ -37,6 +38,7 @@ void saveFile(char * filename, char * rest){
     printf("size: %s\n", size);
     printf("contents: %s\n", toSave);
 
+    fputs(toSave, goHere);
 }
 
 // delete function
