@@ -11,8 +11,26 @@
 // note: strcat for the config file
 
 // read function
-// sample output:   32:contents of file
-// fgets() and keep track of how many bytes you read
+void readFile(char * filename) {
+    char string[100];
+    int i;
+    for(i = 0;; i++) {
+        if(filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
+    FILE *stream = fopen(filename, "r");
+    fgets(string, BUFFER_SIZE, stream);
+    int fileLength = 0;
+    while (fgets(string, BUFFER_SIZE, stream)) {
+        for (int j = 0; string[j] != '\0'; j++) {
+            fileLength += j;
+        }
+    }
+    printf("Length of Str is %d", fileLength);
+    fclose(stream);
+}
 
 // write function
 // fputs()
@@ -88,7 +106,7 @@ int main() {
 
     if (strcmp(command, "read") == 0) {
         // pass to read function
-        printf("Read function...");
+        readFile(filename);
     } else if (strcmp(command, "write") == 0) {
         // pass to write
         printf("Write function...\n");
