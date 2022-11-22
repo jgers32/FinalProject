@@ -25,7 +25,7 @@ void saveFile(char * filename, char * rest){
             strncpy(size, rest, i);
             size[i] = '\0';
             int count = 0;
-            while (count < strlen(rest) - 3) {
+            while (count < strlen(rest) - strlen(size) - 2) {
                 toSave[count] = rest[(i + 2) + count - 1];
                 count++;
             }
