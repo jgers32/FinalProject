@@ -1,9 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <unistd.h>
 
 #define BUFFER_SIZE 256
@@ -21,17 +18,17 @@ void readFile(char * filename) {
     }
     FILE *stream = fopen(filename, "r");
     int fileLength = 0;
+    char file[1024];
+    file[0] = '\0';
     while (fgets(string, BUFFER_SIZE, stream)) {
-        for (int j = 0; string[j] != '\0'; j++) {
-            fileLength++;
-        }
+        fileLength += strlen(string);
+        strcat(file, string);
     }
-    printf("Length of Str is %d", fileLength);
+    printf("%d:%s", fileLength, file);
     fclose(stream);
 }
 
 // write function
-// fputs()
 void saveFile(char * filename, char * rest){
     FILE *goHere = fopen(filename, "w");
     char * size = malloc(2);
