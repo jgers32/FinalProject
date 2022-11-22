@@ -7,6 +7,8 @@
 
 // note: strcat for the config file
 
+void *init();
+
 // read function
 void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
@@ -55,7 +57,20 @@ void delete(char *input) {
     unlink(input);
 }
 
+void * init() {
+    char * string = malloc(BUFFER_SIZE);
+    FILE *config = fopen("fs.cfg", "r");
+    char save_dir[1024];
+    save_dir[0] = '\0';
+    while (fgets(string, BUFFER_SIZE, config)) {
+        strcat(save_dir, string);
+    }
+    printf("%s", save_dir);
+
+}
+
 int main() {
+    init();
     char command[BUFFER_SIZE];
     char *call = malloc(7);
     char *filename = malloc(32);
