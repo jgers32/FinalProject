@@ -47,8 +47,8 @@ void delete(char *input) {
 int main() {
     char command[32];
     char *call = malloc(7);
-    char *filename[32];
-    char *contents[32];
+    char *filename = malloc(32);
+    char *contents = malloc(32);
 
     // gets input -- in future this will be from the config file
     printf("Enter command: ");
@@ -91,7 +91,7 @@ int main() {
     } else if (strcmp(command, "write") == 0) {
         // pass to write
         printf("Write function...\n");
-        saveFile(&filename, &contents);
+        saveFile(filename, contents);
     } else {
         // remove newline character and pass to delete
         for (int i = 0; i < 32; i++) {
