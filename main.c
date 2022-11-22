@@ -52,10 +52,6 @@ void saveFile(char * filename, char * rest){
             break;
         }
     }
-
-    printf("size: %s\n", size);
-    printf("contents: %s\n", toSave);
-
     fputs(toSave, goHere);
 }
 
@@ -100,16 +96,11 @@ int main() {
         }
     }
 
-    printf("function: %s\n", call);
-    printf("filename: %s\n", filename);
-    printf("contents: %s\n", contents);
-
     if (strcmp(command, "read") == 0) {
         // pass to read function
         readFile(filename);
     } else if (strcmp(command, "write") == 0) {
         // pass to write
-        printf("Write function...\n");
         saveFile(filename, contents);
     } else {
         // remove newline character and pass to delete
