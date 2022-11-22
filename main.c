@@ -12,20 +12,18 @@
 
 // read function
 void readFile(char * filename) {
-    char string[100];
-    int i;
-    for(i = 0;; i++) {
+    char * string = malloc(BUFFER_SIZE);
+    for(int i = 0;; i++) {
         if(filename[i] == '\n') {
             filename[i] = '\0';
             break;
         }
     }
     FILE *stream = fopen(filename, "r");
-    fgets(string, BUFFER_SIZE, stream);
     int fileLength = 0;
     while (fgets(string, BUFFER_SIZE, stream)) {
         for (int j = 0; string[j] != '\0'; j++) {
-            fileLength += j;
+            fileLength++;
         }
     }
     printf("Length of Str is %d", fileLength);
