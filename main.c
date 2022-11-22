@@ -16,6 +16,28 @@
 
 // write function
 // fputs()
+void saveFile(char * filename, char * rest){
+    char * size = malloc(2);
+    char * toSave = malloc(32);
+
+    for (int i = 0; i < 32; i++) {
+        if (rest[i] == ':') {
+            strncpy(size, rest, i);
+            size[i] = '\0';
+            int count = 0;
+            while (count < strlen(rest) - 3) {
+                toSave[count] = rest[(i + 2) + count - 1];
+                count++;
+            }
+            toSave[count] = '\0';
+            break;
+        }
+    }
+
+    printf("size: %s\n", size);
+    printf("contents: %s\n", toSave);
+
+}
 
 // delete function
 void delete(char *input) {
@@ -68,7 +90,8 @@ int main() {
         printf("Read function...");
     } else if (strcmp(command, "write") == 0) {
         // pass to write
-        printf("Write function...");
+        printf("Write function...\n");
+        saveFile(&filename, &contents);
     } else {
         // remove newline character and pass to delete
         for (int i = 0; i < 32; i++) {
