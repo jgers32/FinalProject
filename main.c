@@ -47,8 +47,8 @@ void delete(char *input) {
 int main() {
     char command[32];
     char *call = malloc(7);
-    char filename[32];
-    char contents[32];
+    char *filename[32];
+    char *contents[32];
 
     // gets input -- in future this will be from the config file
     printf("Enter command: ");
