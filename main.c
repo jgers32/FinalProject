@@ -96,7 +96,7 @@ int main() {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
             char * path = malloc(BUFFER_SIZE);
             strncpy(path, save_dir, i + 2);
-            printf('%s', path);
+            printf("%s", path);
             //path[i] = '\0';
 //            int count = 0;
 //            while (count < strlen(command) ) {
