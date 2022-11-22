@@ -25,7 +25,7 @@ void saveFile(char * filename, char * rest){
             strncpy(size, rest, i);
             size[i] = '\0';
             int count = 0;
-            while (count < strlen(rest) - strlen(size) - 2) {
+            while (count < strlen(rest) - strlen(size) - 1) {
                 toSave[count] = rest[(i + 2) + count - 1];
                 count++;
             }
@@ -45,19 +45,18 @@ void delete(char *input) {
 }
 
 int main() {
-    char command[32];
+    char command[BUFFER_SIZE];
     char *call = malloc(7);
     char *filename = malloc(32);
     char *contents = malloc(32);
-
     // gets input -- in future this will be from the config file
     printf("Enter command: ");
-    fgets(command, 32, stdin);
-
+    fgets(command, BUFFER_SIZE, stdin);
     // gets function to call & filename
     for (int i = 0; i < 32; i++) {
         if (command[i] == ' ') {
             strncpy(call, command, i);
+            call[i] = '\0';
             int count = 0;
             while (count < strlen(command) ) {
                 filename[count] = command[(i + 2) + count - 1];
