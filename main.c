@@ -5,10 +5,6 @@
 
 #define BUFFER_SIZE 256
 
-// note: strcat for the config file
-
-void *init();
-
 // read function
 void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
@@ -57,33 +53,7 @@ void delete(char *input) {
     unlink(input);
 }
 
-/*void * init() {
-    char * string = malloc(BUFFER_SIZE);
-    FILE *config = fopen("fs.cfg", "r");
-    char save_dir[1024];
-    save_dir[0] = '\0';
-    while (fgets(string, BUFFER_SIZE, config)) {
-        strcat(save_dir, string);
-    }
-
-    for (int i = 0; i < 32; i++) {
-        if (save_dir[i] == ' ') {
-            strncpy(call, save_dir, i);
-            call[i] = '\0';
-            int count = 0;
-            while (count < strlen(command) ) {
-                filename[count] = command[(i + 2) + count - 1];
-                count++;
-            }
-            command[i] = '\0';
-            break;
-        }
-    }
-}*/
-
 int main() {
-    //init();
-
     char * string = malloc(BUFFER_SIZE);
     FILE *config = fopen("fs.cfg", "r");
     char save_dir[1024];
@@ -92,18 +62,18 @@ int main() {
         strcat(save_dir, string);
     }
 
+    char *path = malloc(BUFFER_SIZE);
     for (int i = 0; i < 32; i++) {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
-            char * path = malloc(BUFFER_SIZE);
-            strncpy(path, save_dir, i + 2);
+
+            //strncpy(path, save_dir, i);
+            int count = 0;
+            while (count < strlen(save_dir) ) {
+                path[count] = save_dir[i + 2];
+                count++;
+                i++;
+            }
             printf("%s", path);
-            //path[i] = '\0';
-//            int count = 0;
-//            while (count < strlen(command) ) {
-//                filename[count] = command[(i + 2) + count - 1];
-//                count++;
-//            }
-//            command[i] = '\0';
             break;
         }
     }
