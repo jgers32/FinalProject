@@ -12,12 +12,12 @@
 void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
 
-    for (int i = 0;; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
+//    for (int i = 0;; i++) {
+//        if (filename[i] == '\n') {
+//            filename[i] = '\0';
+//            break;
+//        }
+//    }
 
     FILE * stream = fopen(filename, "r");
     int fileLength = 0;
@@ -35,45 +35,40 @@ void readFile(char * filename) {
 
 // write function
 void saveFile(char * filename, char * rest, char * path) {
-    for (int i = 0;; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
-
-    for (int j = 0;; j++) {
-        if (path[j] == '\n') {
-            path[j] = '\0';
-            break;
-        }
-    }
-
-    strcat(path, filename);
-    printf("%s", path); // check if path and fs.cfg are right?
-//    FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
-//    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
-//    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
-//    char * size = malloc(2);
-//    char * toSave = malloc(32);
-//
-//    for (int i = 0; i < 32; i++) {
-//        if (rest[i] == ':') {
-//            strncpy(size, rest, i);
-//            size[i] = '\0';
-//
-//            int count = 0;
-//            while (count < strlen(rest) - strlen(size) - 1) {
-//                toSave[count] = rest[(i + 2) + count - 1];
-//                count++;
-//            }
-//
-//            toSave[count] = '\0';
+    // removes newline character (if there is one in filename)
+//    for (int i = 0;; i++) {
+//        if (filename[i] == '\n') {
+//            filename[i] = '\0';
 //            break;
 //        }
 //    }
-//
-//    fputs(toSave, goHere);
+
+    //strcat(path, filename); //adds filename to end of path
+    //printf("%s", path); // check if path and fs.cfg are right?
+    //FILE * goHere = fopen(path, "w"); // seg fault
+    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
+
+    FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
+    char * size = malloc(2);
+    char * toSave = malloc(32);
+
+    for (int i = 0; i < 32; i++) {
+        if (rest[i] == ':') {
+            strncpy(size, rest, i);
+            size[i] = '\0';
+
+            int count = 0;
+            while (count < strlen(rest) - strlen(size) - 1) {
+                toSave[count] = rest[(i + 2) + count - 1];
+                count++;
+            }
+
+            toSave[count] = '\0';
+            break;
+        }
+    }
+
+    fputs(toSave, goHere);
 }
 
 // delete function
@@ -91,6 +86,7 @@ int main() {
         strcat(save_dir, string);
     }
 
+    // removes newline character (if there is one in save_dir)
     for (int k = 0; k < BUFFER_SIZE; k++) {
         if (save_dir[k] == '\n') {
             save_dir[k] = '\0';
@@ -107,12 +103,14 @@ int main() {
                 count++;
                 i++;
             }
-//            for (int k = 0; k < BUFFER_SIZE; k++) {
-//                if (path[k] == '\n') {
-//                    path[k] = '\0';
-//                    break;
-//                }
-//            }
+            break;
+        }
+    }
+
+    // removes newline character (if there is one in path)
+    for (int j = 0;; j++) {
+        if (path[j] == '\n') {
+            path[j] = '\0';
             break;
         }
     }
@@ -159,6 +157,14 @@ int main() {
         }
     }
 
+    // remove newline character in filename
+    for (int i = 0; i < 32; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
+
     if (strcmp(command, "read") == 0) {
         // pass to read function
         readFile(filename);
@@ -166,13 +172,6 @@ int main() {
         // pass to write function
         saveFile(filename, contents, path);
     } else {
-        // remove newline character and pass to delete function
-        for (int i = 0; i < 32; i++) {
-            if (filename[i] == '\n') {
-                filename[i] = '\0';
-                break;
-            }
-        }
         deleteFile(filename);
     }
 }
