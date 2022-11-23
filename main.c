@@ -91,6 +91,13 @@ int main() {
         strcat(save_dir, string);
     }
 
+    for (int k = 0; k < BUFFER_SIZE; k++) {
+        if (save_dir[k] == '\n') {
+            save_dir[k] = '\0';
+            break;
+        }
+    }
+
     char * path = malloc(BUFFER_SIZE);
     for (int i = 0; i < 32; i++) {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
