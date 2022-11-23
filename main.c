@@ -37,13 +37,6 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     // does the newline character in filename need to be removed like in read/delete functions?
-    for (int i = 0; ; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
-
     // is there a newline character in path / does it need to be removed?
 
     strcat(path, filename); //adds filename to end of path
@@ -96,13 +89,13 @@ int main() {
         strcat(save_dir, string);
     }
 
-    // is there a newline character in save_dir / does it need to be removed?
-//    for (int i = 0; ; i++) {
-//        if (save_dir[i] == '\n') {
-//            save_dir[i] = '\0';
-//            break;
-//        }
-//    }
+    // removes newline character in save_dir so path is correct?
+    for (int i = 0; ; i++) {
+        if (save_dir[i] == '\n') {
+            save_dir[i] = '\0';
+            break;
+        }
+    }
 
     char * path = malloc(BUFFER_SIZE);
     for (int i = 0; i < 32; i++) {
