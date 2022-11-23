@@ -85,7 +85,7 @@ int main() {
                 count++;
                 i++;
             }
-            for (int k = 0; k < 32; k++) {
+            for (int k = 0; k < BUFFER_SIZE; k++) {
                 if (path[k] == '\n') {
                     path[k] = '\0';
                     break;
