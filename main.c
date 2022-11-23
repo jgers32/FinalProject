@@ -1,7 +1,10 @@
+// does mem need to be freed? If so, where?
+// test on server and change the serverWithPopupThread.c file?
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <sys/unistd.h>
+#include <sys/unistd.h> // Needed to prevent warning on server
 
 #define BUFFER_SIZE 256
 
@@ -33,7 +36,9 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     strcat(path, filename);
-    FILE * goHere = fopen(path, "w");
+    //printf(path); // check if path and fs.cfg are right?
+    //FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
+    FILE * goHere = fopen(filename, "w");
     char * size = malloc(2);
     char * toSave = malloc(32);
 
