@@ -36,21 +36,8 @@ void readFile(char * filename) {
 
 // write function
 void saveFile(char * filename, char * rest, char * path) {
-    // removes newline character in filename
-    for (int i = 0; ; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
-
-    // removes newline character in path
-//    for (int i = 0; ; i++) {
-//        if (path[i] == '\n') {
-//            path[i] = '\0';
-//            break;
-//        }
-//    }
+    // does the newline character in filename need to be removed like in read/delete functions?
+    // is there a newline character in path / does it need to be removed?
 
     //strcat(path, filename); //adds filename to end of path
     //printf("%s", path); // check if path and fs.cfg are right?
@@ -95,23 +82,23 @@ void deleteFile(char * filename) {
 int main() {
     char * string = malloc(BUFFER_SIZE);
     FILE * config = fopen("fs.cfg", "r");
-    char save_dir[BUFFER_SIZE];
+    char save_dir[1024];
     save_dir[0] = '\0';
 
     while (fgets(string, BUFFER_SIZE, config)) {
         strcat(save_dir, string);
     }
 
-    // removes newline character in save_dir
-    for (int i = 0; ; i++) {
-        if (save_dir[i] == '\n') {
-            save_dir[i] = '\0';
-            break;
-        }
-    }
+    // is there a newline character in save_dir / does it need to be removed?
+//    for (int i = 0; ; i++) {
+//        if (save_dir[i] == '\n') {
+//            save_dir[i] = '\0';
+//            break;
+//        }
+//    }
 
     char * path = malloc(BUFFER_SIZE);
-    for (int i = 0; i < BUFFER_SIZE; i++) {
+    for (int i = 0; i < 32; i++) {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
             int count = 0;
             while (count < strlen(save_dir)) {
@@ -119,6 +106,7 @@ int main() {
                 count++;
                 i++;
             }
+            printf("%s", path);
             break;
         }
     }
