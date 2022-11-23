@@ -38,28 +38,28 @@ void saveFile(char * filename, char * rest, char * path) {
     strcat(path, filename);
     printf("%s", path); // check if path and fs.cfg are right?
     //FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
-    FILE * goHere = fopen(strcat(path, filename), "w");
+    //FILE * goHere = fopen(strcat(path, filename), "w");
     //FILE * goHere = fopen(filename, "w");
-    char * size = malloc(2);
-    char * toSave = malloc(32);
-
-    for (int i = 0; i < 32; i++) {
-        if (rest[i] == ':') {
-            strncpy(size, rest, i);
-            size[i] = '\0';
-
-            int count = 0;
-            while (count < strlen(rest) - strlen(size) - 1) {
-                toSave[count] = rest[(i + 2) + count - 1];
-                count++;
-            }
-
-            toSave[count] = '\0';
-            break;
-        }
-    }
-
-    fputs(toSave, goHere);
+//    char * size = malloc(2);
+//    char * toSave = malloc(32);
+//
+//    for (int i = 0; i < 32; i++) {
+//        if (rest[i] == ':') {
+//            strncpy(size, rest, i);
+//            size[i] = '\0';
+//
+//            int count = 0;
+//            while (count < strlen(rest) - strlen(size) - 1) {
+//                toSave[count] = rest[(i + 2) + count - 1];
+//                count++;
+//            }
+//
+//            toSave[count] = '\0';
+//            break;
+//        }
+//    }
+//
+//    fputs(toSave, goHere);
 }
 
 // delete function
