@@ -106,7 +106,6 @@ int main() {
                 count++;
                 i++;
             }
-            printf("%s", path);
             break;
         }
     }
