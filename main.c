@@ -1,4 +1,4 @@
-// does mem need to be freed? If so, where?
+// does memory need to be freed? If so, where?
 // test on server and change the serverWithPopupThread.c file?
 
 #include <string.h>
@@ -35,11 +35,17 @@ void readFile(char * filename) {
 
 // write function
 void saveFile(char * filename, char * rest, char * path) {
+    for (int i = 0;; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
     //strcat(path, filename);
     //printf("%s", path); // check if path and fs.cfg are right?
     //FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
-    FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
-    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
+    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
+    FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
     char * size = malloc(2);
     char * toSave = malloc(32);
 
