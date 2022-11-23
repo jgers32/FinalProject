@@ -13,7 +13,7 @@ void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
 
     // removes newline character in filename
-    for (int i = 0;; i++) {
+    for (int i = 0; ; i++) {
         if (filename[i] == '\n') {
             filename[i] = '\0';
             break;
@@ -37,7 +37,7 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     // removes newline character in filename
-    for (int i = 0;; i++) {
+    for (int i = 0; ; i++) {
         if (filename[i] == '\n') {
             filename[i] = '\0';
             break;
@@ -75,7 +75,7 @@ void saveFile(char * filename, char * rest, char * path) {
 // delete function
 void deleteFile(char * filename) {
     // removes newline character in filename
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; ; i++) {
         if (filename[i] == '\n') {
             filename[i] = '\0';
             break;
@@ -95,7 +95,7 @@ int main() {
     }
 
     // removes newline character in save_dir
-    for (int i = 0; i < BUFFER_SIZE; i++) {
+    for (int i = 0; ; i++) {
         if (save_dir[i] == '\n') {
             save_dir[i] = '\0';
             break;
@@ -116,9 +116,9 @@ int main() {
     }
 
     // removes newline character in path
-    for (int j = 0; j < BUFFER_SIZE; j++) {
-        if (path[j] == '\n') {
-            path[j] = '\0';
+    for (int i = 0; ; i++) {
+        if (path[i] == '\n') {
+            path[i] = '\0';
             break;
         }
     }
