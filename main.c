@@ -31,8 +31,8 @@ void readFile(char * filename) {
 
 // write function
 void saveFile(char * filename, char * rest, char * path) {
-    strcat(filename, path);
-    FILE * goHere = fopen(filename, "w");
+    strcat(path, filename);
+    FILE * goHere = fopen(path, "w");
     char * size = malloc(2);
     char * toSave = malloc(32);
 
@@ -79,7 +79,12 @@ int main() {
                 count++;
                 i++;
             }
-            printf("%s", path);
+            for (int k = 0; k < 32; k++) {
+                if (path[k] == '\n') {
+                    path[k] = '\0';
+                    break;
+                }
+            }
             break;
         }
     }
