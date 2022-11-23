@@ -41,6 +41,14 @@ void saveFile(char * filename, char * rest, char * path) {
             break;
         }
     }
+
+    for (int j = 0;; j++) {
+        if (path[j] == '\n') {
+            path[j] = '\0';
+            break;
+        }
+    }
+
     strcat(path, filename);
     //printf("%s", path); // check if path and fs.cfg are right?
     FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
@@ -92,12 +100,12 @@ int main() {
                 count++;
                 i++;
             }
-            for (int k = 0; k < BUFFER_SIZE; k++) {
-                if (path[k] == '\n') {
-                    path[k] = '\0';
-                    break;
-                }
-            }
+//            for (int k = 0; k < BUFFER_SIZE; k++) {
+//                if (path[k] == '\n') {
+//                    path[k] = '\0';
+//                    break;
+//                }
+//            }
             break;
         }
     }
