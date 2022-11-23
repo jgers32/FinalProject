@@ -1,4 +1,4 @@
-// does memory need to be freed? If so, where?
+// does memory need to be freed? if so, where?
 // test on server and change the serverWithPopupThread.c file?
 
 #include <string.h>
@@ -12,12 +12,13 @@
 void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
 
-//    for (int i = 0;; i++) {
-//        if (filename[i] == '\n') {
-//            filename[i] = '\0';
-//            break;
-//        }
-//    }
+    // removes newline character in filename
+    for (int i = 0;; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
 
     FILE * stream = fopen(filename, "r");
     int fileLength = 0;
@@ -35,13 +36,13 @@ void readFile(char * filename) {
 
 // write function
 void saveFile(char * filename, char * rest, char * path) {
-    // removes newline character (if there is one in filename)
-//    for (int i = 0;; i++) {
-//        if (filename[i] == '\n') {
-//            filename[i] = '\0';
-//            break;
-//        }
-//    }
+    // removes newline character in filename
+    for (int i = 0;; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
 
     //strcat(path, filename); //adds filename to end of path
     //printf("%s", path); // check if path and fs.cfg are right?
@@ -72,30 +73,37 @@ void saveFile(char * filename, char * rest, char * path) {
 }
 
 // delete function
-void deleteFile(char * input) {
-    unlink(input);
+void deleteFile(char * filename) {
+    // removes newline character in filename
+    for (int i = 0; i < 32; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
+    unlink(filename);
 }
 
 int main() {
     char * string = malloc(BUFFER_SIZE);
     FILE * config = fopen("fs.cfg", "r");
-    char save_dir[1024];
+    char save_dir[BUFFER_SIZE];
     save_dir[0] = '\0';
 
     while (fgets(string, BUFFER_SIZE, config)) {
         strcat(save_dir, string);
     }
 
-    // removes newline character (if there is one in save_dir)
-    for (int k = 0; k < BUFFER_SIZE; k++) {
-        if (save_dir[k] == '\n') {
-            save_dir[k] = '\0';
+    // removes newline character in save_dir
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        if (save_dir[i] == '\n') {
+            save_dir[i] = '\0';
             break;
         }
     }
 
     char * path = malloc(BUFFER_SIZE);
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < BUFFER_SIZE; i++) {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
             int count = 0;
             while (count < strlen(save_dir)) {
@@ -107,8 +115,8 @@ int main() {
         }
     }
 
-    // removes newline character (if there is one in path)
-    for (int j = 0;; j++) {
+    // removes newline character in path
+    for (int j = 0; j < BUFFER_SIZE; j++) {
         if (path[j] == '\n') {
             path[j] = '\0';
             break;
@@ -157,14 +165,6 @@ int main() {
         }
     }
 
-    // remove newline character in filename
-    for (int i = 0; i < 32; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
-            break;
-        }
-    }
-
     if (strcmp(command, "read") == 0) {
         // pass to read function
         readFile(filename);
@@ -172,6 +172,7 @@ int main() {
         // pass to write function
         saveFile(filename, contents, path);
     } else {
+        // pass to delete function
         deleteFile(filename);
     }
 }
