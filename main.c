@@ -13,7 +13,7 @@ void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
 
     // removes newline character in filename
-    for (int i = 0; ; i++) {
+    for (int i = 0;; i++) {
         if (filename[i] == '\n') {
             filename[i] = '\0';
             break;
