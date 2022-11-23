@@ -33,7 +33,7 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     strcat(path, filename);
-    FILE * goHere = fopen(path, "w");
+    FILE * goHere = fopen(filename, "w");
     char * size = malloc(2);
     char * toSave = malloc(32);
 
