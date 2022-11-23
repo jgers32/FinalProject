@@ -56,7 +56,7 @@ void saveFile(char * filename, char * rest, char * path) {
 }
 
 // delete function
-void delete(char * input) {
+void deleteFile(char * input) {
     unlink(input);
 }
 
@@ -145,6 +145,6 @@ int main() {
                 break;
             }
         }
-        delete(filename);
+        deleteFile(filename);
     }
 }
