@@ -13,7 +13,7 @@ void readFile(char * filename) {
     char * string = malloc(BUFFER_SIZE);
 
     // removes newline character in filename
-    for (int i = 0;; i++) {
+    for (int i = 0; ; i++) {
         if (filename[i] == '\n') {
             filename[i] = '\0';
             break;
@@ -37,6 +37,13 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     // does the newline character in filename need to be removed like in read/delete functions?
+    for (int i = 0; ; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
+
     // is there a newline character in path / does it need to be removed?
 
     strcat(path, filename); //adds filename to end of path
