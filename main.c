@@ -50,7 +50,7 @@ void saveFile(char * filename, char * rest, char * path) {
     }
 
     strcat(path, filename);
-    //printf("%s", path); // check if path and fs.cfg are right?
+    printf("%s", path); // check if path and fs.cfg are right?
     FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
     //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
     //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
