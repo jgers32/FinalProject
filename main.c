@@ -36,7 +36,7 @@ void readFile(char * filename) {
 // write function
 void saveFile(char * filename, char * rest, char * path) {
     strcat(path, filename);
-    //printf(path); // check if path and fs.cfg are right?
+    printf("%s", path); // check if path and fs.cfg are right?
     //FILE * goHere = fopen(path, "w"); // this causes a segmentation fault...permissions?
     FILE * goHere = fopen(filename, "w");
     char * size = malloc(2);
