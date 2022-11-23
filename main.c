@@ -116,12 +116,12 @@ int main() {
     }
 
     // removes newline character in path
-    for (int i = 0; ; i++) {
-        if (path[i] == '\n') {
-            path[i] = '\0';
-            break;
-        }
-    }
+//    for (int i = 0; ; i++) {
+//        if (path[i] == '\n') {
+//            path[i] = '\0';
+//            break;
+//        }
+//    }
 
     char command[BUFFER_SIZE];
     char * call = malloc(7);
