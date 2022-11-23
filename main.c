@@ -44,6 +44,14 @@ void saveFile(char * filename, char * rest, char * path) {
         }
     }
 
+    // removes newline character in path
+    for (int i = 0; ; i++) {
+        if (path[i] == '\n') {
+            path[i] = '\0';
+            break;
+        }
+    }
+
     //strcat(path, filename); //adds filename to end of path
     //printf("%s", path); // check if path and fs.cfg are right?
     //FILE * goHere = fopen(path, "w"); // seg fault
@@ -114,14 +122,6 @@ int main() {
             break;
         }
     }
-
-    // removes newline character in path
-//    for (int i = 0; ; i++) {
-//        if (path[i] == '\n') {
-//            path[i] = '\0';
-//            break;
-//        }
-//    }
 
     char command[BUFFER_SIZE];
     char * call = malloc(7);
