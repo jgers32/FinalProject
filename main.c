@@ -92,13 +92,6 @@ int main() {
     // does the newline character in filename need to be removed like in read/delete functions?
     // is there a newline character in path / does it need to be removed?
 
-    strcat(path, filename); //adds filename to end of path
-    printf("%s", path); // check if path and fs.cfg are right?
-    FILE *goHere = fopen(path, "w"); // seg fault
-    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
-
-    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
-
     // removes newline character in save_dir so path is correct?
     for (int i = 0; ; i++) {
         if (save_dir[i] == '\n') {
@@ -156,14 +149,21 @@ int main() {
         }
     }
 
+    strcat(path, filename); //adds filename to end of path
+    printf("%s", path); // check if path and fs.cfg are right?
+    FILE *goHere = fopen(path, "w"); // seg fault
+    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
+
+    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
+
     if (strcmp(command, "read") == 0) {
         // pass to read function
-        readFile(filename);
+        readFile(path);
     } else if (strcmp(command, "write") == 0) {
         // pass to write function
-        writeFile(filename, contents);
+        writeFile(path, contents);
     } else {
         // pass to delete function
-        deleteFile(filename);
+        deleteFile(path);
     }
 }
