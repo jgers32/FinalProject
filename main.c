@@ -34,6 +34,7 @@ void readFile(char * filename) {
     fclose(stream);
 }
 
+// take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
 void writeFile(char * filename, char * rest, char * path) {
     // does the newline character in filename need to be removed like in read/delete functions?
