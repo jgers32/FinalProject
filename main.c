@@ -9,18 +9,18 @@
 #define BUFFER_SIZE 256
 
 // read function
-void readFile(char * filename) {
+void readFile(char * path) {
     char * string = malloc(BUFFER_SIZE);
 
     // removes newline character in filename
     for (int i = 0; ; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
+        if (path[i] == '\n') {
+            path[i] = '\0';
             break;
         }
     }
 
-    FILE * stream = fopen(filename, "r");
+    FILE * stream = fopen(path, "r");
     int fileLength = 0;
     char file[1024];
     file[0] = '\0';
@@ -37,42 +37,39 @@ void readFile(char * filename) {
 // take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
 void writeFile(char * path, char * rest) {
-
-    char *size = malloc(5);
     char *toWrite = malloc(32);
 
     int toCopyFlag = 0;
     int n = 0;
     for (int i = 0; i < 32; i++) {
         if (rest[i] == ':') {
-            strncpy(size, rest, i);
-            size[i] = '\0';
             toCopyFlag = 1;
             continue;
         }
         if (toCopyFlag) {
-            toWrite[n] = rest[i];
-            n++;
-
+            if (rest[i] == '\n') {
+                toWrite[n] = '\0';
+            }
+            else {
+                toWrite[n] = rest[i];
+                n++;
+            }
         }
     }
-    // n is the wrong size?
-    toWrite[n - 1] = '\0';
-    // goHere is null???
     fputs(toWrite, path);
     //free the memory here
 }
 
 // delete function
-void deleteFile(char * filename) {
+void deleteFile(char * path) {
     // removes newline character in filename
     for (int i = 0; ; i++) {
-        if (filename[i] == '\n') {
-            filename[i] = '\0';
+        if (path[i] == '\n') {
+            path[i] = '\0';
             break;
         }
     }
-    unlink(filename);
+    unlink(path);
 }
 
 int main() {
