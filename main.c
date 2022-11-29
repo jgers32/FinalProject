@@ -36,7 +36,7 @@ void readFile(char * filename) {
 
 // take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
-void writeFile(char * filename, char * rest) {
+void writeFile(char * path, char * rest) {
 
     char *size = malloc(5);
     char *toWrite = malloc(32);
@@ -59,7 +59,7 @@ void writeFile(char * filename, char * rest) {
     // n is the wrong size?
     toWrite[n - 1] = '\0';
     // goHere is null???
-    fputs(toWrite, filename);
+    fputs(toWrite, path);
     //free the memory here
 }
 
