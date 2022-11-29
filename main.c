@@ -36,16 +36,8 @@ void readFile(char * filename) {
 
 // take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
-void writeFile(char * filename, char * rest, char * path) {
-    // does the newline character in filename need to be removed like in read/delete functions?
-    // is there a newline character in path / does it need to be removed?
+void writeFile(char * filename, char * rest) {
 
-    strcat(path, filename); //adds filename to end of path
-    printf("%s", path); // check if path and fs.cfg are right?
-    FILE *goHere = fopen(path, "w"); // seg fault
-    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
-
-    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
     char *size = malloc(5);
     char *toWrite = malloc(32);
 
@@ -67,23 +59,28 @@ void writeFile(char * filename, char * rest, char * path) {
     // n is the wrong size?
     toWrite[n - 1] = '\0';
     // goHere is null???
-    fputs(toWrite, goHere);
+    fputs(toWrite, filename);
     //free the memory here
 }
 
 // delete function
 void deleteFile(char * filename) {
-//    // removes newline character in filename
-//    for (int i = 0; ; i++) {
-//        if (filename[i] == '\n') {
-//            filename[i] = '\0';
-//            break;
-//        }
-//    }
-//    unlink(filename);
+    // removes newline character in filename
+    for (int i = 0; ; i++) {
+        if (filename[i] == '\n') {
+            filename[i] = '\0';
+            break;
+        }
+    }
+    unlink(filename);
 }
 
 int main() {
+    char command[BUFFER_SIZE];
+    char * call = malloc(7);
+    char * filename = malloc(32);
+    char * contents = malloc(32);
+    char * path = malloc(BUFFER_SIZE);
     char * string = malloc(BUFFER_SIZE);
     FILE * config = fopen("fs.cfg", "r");
     char save_dir[1024];
@@ -92,6 +89,15 @@ int main() {
     while (fgets(string, BUFFER_SIZE, config)) {
         strcat(save_dir, string);
     }
+    // does the newline character in filename need to be removed like in read/delete functions?
+    // is there a newline character in path / does it need to be removed?
+
+    strcat(path, filename); //adds filename to end of path
+    printf("%s", path); // check if path and fs.cfg are right?
+    FILE *goHere = fopen(path, "w"); // seg fault
+    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
+
+    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
 
     // removes newline character in save_dir so path is correct?
     for (int i = 0; ; i++) {
@@ -101,7 +107,6 @@ int main() {
         }
     }
 
-    char * path = malloc(BUFFER_SIZE);
     for (int i = 0; i < 32; i++) {
         if (save_dir[i] == '=' && save_dir[i + 1] == ' ') {
             int count = 0;
@@ -113,11 +118,6 @@ int main() {
             break;
         }
     }
-
-    char command[BUFFER_SIZE];
-    char * call = malloc(7);
-    char * filename = malloc(32);
-    char * contents = malloc(32);
 
     // gets input -- in future this will be from the server?
     printf("Enter command: ");
@@ -161,7 +161,7 @@ int main() {
         readFile(filename);
     } else if (strcmp(command, "write") == 0) {
         // pass to write function
-        writeFile(filename, contents, path);
+        writeFile(filename, contents);
     } else {
         // pass to delete function
         deleteFile(filename);
