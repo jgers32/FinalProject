@@ -37,6 +37,7 @@ void readFile(char * path) {
 // take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
 void writeFile(char * path, char * rest) {
+    FILE *goHere = fopen(path, "w");
     char *toWrite = malloc(32);
 
     int toCopyFlag = 0;
@@ -56,7 +57,8 @@ void writeFile(char * path, char * rest) {
             }
         }
     }
-    fputs(toWrite, path);
+    fputs(toWrite, goHere);
+    free(toWrite);
     //free the memory here
 }
 
