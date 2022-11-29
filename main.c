@@ -39,12 +39,12 @@ void saveFile(char * filename, char * rest, char * path) {
     // does the newline character in filename need to be removed like in read/delete functions?
     // is there a newline character in path / does it need to be removed?
 
-    strcat(path, filename); //adds filename to end of path
+    strcat(*path, *filename); //adds filename to end of path
     printf("%s", path); // check if path and fs.cfg are right?
-    //FILE * goHere = fopen(path, "w"); // seg fault
+    FILE * goHere = fopen(path, "w"); // seg fault
     //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
 
-    FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
+    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
     char * size = malloc(2);
     char * toSave = malloc(32);
 
