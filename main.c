@@ -151,7 +151,7 @@ int main() {
 
     strcat(path, filename); //adds filename to end of path
     printf("%s", path); // check if path and fs.cfg are right?
-    FILE *goHere = fopen(path, "w"); // seg fault
+    //FILE *goHere = fopen(path, "w"); // seg fault
     //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
 
     //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
