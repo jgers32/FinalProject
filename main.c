@@ -60,7 +60,7 @@ void writeFile(char * path, char * rest) {
         }
     }
     fputs(toWrite, goHere);
-    //free(toWrite);
+    free(toWrite);
 }
 
 // delete function
