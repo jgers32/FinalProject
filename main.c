@@ -34,7 +34,7 @@ void readFile(char * path) {
 
     printf("%d:%s", fileLength, file);
     fclose(stream);
-    //free(string);
+    free(string);
 }
 
 // write function
