@@ -81,7 +81,7 @@ int main() {
     char * contents = malloc(32);
     char * path = malloc(BUFFER_SIZE);
     char * string = malloc(BUFFER_SIZE);
-    FILE * config = fopen("/stu/ceierman19/os/final_Project/FinalProject/FinalProject/fs.cfg", "r");
+    FILE * config = fopen("fs.cfg", "r");
     char save_dir[1024];
     save_dir[0] = '\0';
 
