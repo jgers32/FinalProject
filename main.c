@@ -1,4 +1,5 @@
 // free memory to prevent memory leaks
+// do we need the newline character for the read function?
 // edit the serverWithPopupThread.c file on the server
 
 #include <string.h>
