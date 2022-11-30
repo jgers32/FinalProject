@@ -1,10 +1,10 @@
-// does memory need to be freed? if so, where?
-// test on server and change the serverWithPopupThread.c file?
+// free memory to prevent memory leaks
+// edit the serverWithPopupThread.c file on the server
 
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <sys/unistd.h> // Needed to prevent warning on server
+#include <sys/unistd.h> // needed to prevent warning on server
 
 #define BUFFER_SIZE 256
 
@@ -12,7 +12,7 @@
 void readFile(char * path) {
     char * string = malloc(BUFFER_SIZE);
 
-    // removes newline character in filename
+    // removes newline character in path
     for (int i = 0; ; i++) {
         if (path[i] == '\n') {
             path[i] = '\0';
@@ -32,13 +32,13 @@ void readFile(char * path) {
 
     printf("%d:%s", fileLength, file);
     fclose(stream);
+    free(string);
 }
 
-// take the ~ out of the path  (combine path + filename in main, and pass to read and write)
 // write function
 void writeFile(char * path, char * rest) {
-    FILE *goHere = fopen(path, "w");
-    char *toWrite = malloc(32);
+    FILE * goHere = fopen(path, "w");
+    char * toWrite = malloc(32);
 
     int toCopyFlag = 0;
     int n = 0;
@@ -59,12 +59,11 @@ void writeFile(char * path, char * rest) {
     }
     fputs(toWrite, goHere);
     free(toWrite);
-    //free the memory here
 }
 
 // delete function
 void deleteFile(char * path) {
-    // removes newline character in filename
+    // removes newline character in path
     for (int i = 0; ; i++) {
         if (path[i] == '\n') {
             path[i] = '\0';
@@ -83,15 +82,14 @@ int main() {
     char * string = malloc(BUFFER_SIZE);
     FILE * config = fopen("fs.cfg", "r");
     char save_dir[1024];
+
     save_dir[0] = '\0';
 
     while (fgets(string, BUFFER_SIZE, config)) {
         strcat(save_dir, string);
     }
-    // does the newline character in filename need to be removed like in read/delete functions?
-    // is there a newline character in path / does it need to be removed?
 
-    // removes newline character in save_dir so path is correct?
+    // removes newline character in save_dir so path is correct
     for (int i = 0; ; i++) {
         if (save_dir[i] == '\n') {
             save_dir[i] = '\0';
@@ -111,7 +109,7 @@ int main() {
         }
     }
 
-    // gets input -- in future this will be from the server?
+    // gets input -- in the future this will be from the server
     printf("Enter command: ");
     fgets(command, BUFFER_SIZE, stdin);
 
@@ -148,21 +146,22 @@ int main() {
         }
     }
 
-    strcat(path, filename); //adds filename to end of path
-    printf("%s", path); // check if path and fs.cfg are right?
-    //FILE *goHere = fopen(path, "w"); // seg fault
-    //FILE * goHere = fopen(strcat(path, filename), "w"); // seg fault
-
-    //FILE * goHere = fopen(filename, "w"); // this works, but is not taking into account path
+    strcat(path, filename); // adds filename to end of path
 
     if (strcmp(command, "read") == 0) {
-        // pass to read function
+        // pass path to read function
         readFile(path);
     } else if (strcmp(command, "write") == 0) {
-        // pass to write function
+        // pass path to write function
         writeFile(path, contents);
     } else {
-        // pass to delete function
+        // pass path to delete function
         deleteFile(path);
     }
+
+    free(call);
+    free(filename);
+    free(contents);
+    free(path);
+    free(string);
 }
