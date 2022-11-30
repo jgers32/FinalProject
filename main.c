@@ -1,4 +1,8 @@
-// free memory to prevent memory leaks
+// CSC-400: OS Final Project -- File Server
+// Authors: Carrie Eierman, Julia Gersey, and Dana Rabung
+// Date: 12/6/2022
+
+// double check free calls to make sure there aren't any memory leaks or unnecessary free calls
 // do we need the newline character for the read function?
 // edit the serverWithPopupThread.c file on the server
 // adding the config file to GitHub causes a seg fault?
@@ -60,6 +64,7 @@ void writeFile(char * path, char * rest) {
         }
     }
     fputs(toWrite, goHere);
+    fclose(goHere);
     free(toWrite);
 }
 
@@ -82,8 +87,11 @@ int main() {
     char * contents = malloc(32);
     char * path = malloc(BUFFER_SIZE);
     char * string = malloc(BUFFER_SIZE);
+
+    // relative vs. absolute path
     //FILE * config = fopen("fs.cfg", "r");
     FILE * config = fopen("/stu/ceierman19/os/final_Project/FinalProject/FinalProject/fs.cfg", "r");
+
     char save_dir[1024];
     save_dir[0] = '\0';
 
@@ -148,7 +156,8 @@ int main() {
         }
     }
 
-    strcat(path, filename); // adds filename to end of path
+    // adds filename to end of path
+    strcat(path, filename);
 
     if (strcmp(command, "read") == 0) {
         // pass path to read function
@@ -161,6 +170,7 @@ int main() {
         deleteFile(path);
     }
 
+    fclose(config);
     free(call);
     free(filename);
     free(contents);
