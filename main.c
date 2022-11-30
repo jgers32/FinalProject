@@ -33,7 +33,7 @@ void readFile(char * path) {
 
     printf("%d:%s", fileLength, file);
     fclose(stream);
-    free(string);
+    //free(string);
 }
 
 // write function
@@ -59,7 +59,7 @@ void writeFile(char * path, char * rest) {
         }
     }
     fputs(toWrite, goHere);
-    free(toWrite);
+    //free(toWrite);
 }
 
 // delete function
