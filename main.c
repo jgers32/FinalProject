@@ -161,9 +161,9 @@ int main() {
         deleteFile(path);
     }
 
-    //free(call);
-    //free(filename);
-    //free(contents);
-    //free(path);
-    //free(string);
+    free(call);
+    free(filename);
+    free(contents);
+    free(path);
+    free(string);
 }
