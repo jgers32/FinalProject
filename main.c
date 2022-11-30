@@ -2,7 +2,7 @@
 // Authors: Carrie Eierman, Julia Gersey, and Dana Rabung
 // Date: 12/6/2022
 
-// double check free calls to make sure there aren't any memory leaks or unnecessary free calls
+// double check free and fclose calls to make sure there aren't any memory leaks or unnecessary calls
 // do we need the newline character for the read function?
 // edit the serverWithPopupThread.c file on the server
 // adding the config file to GitHub causes a seg fault?
