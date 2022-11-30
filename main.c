@@ -1,6 +1,7 @@
 // free memory to prevent memory leaks
 // do we need the newline character for the read function?
 // edit the serverWithPopupThread.c file on the server
+// adding the config file to GitHub causes a seg fault?
 
 #include <string.h>
 #include <stdlib.h>
@@ -81,7 +82,8 @@ int main() {
     char * contents = malloc(32);
     char * path = malloc(BUFFER_SIZE);
     char * string = malloc(BUFFER_SIZE);
-    FILE * config = fopen("fs.cfg", "r");
+    //FILE * config = fopen("fs.cfg", "r");
+    FILE * config = fopen("/stu/ceierman19/os/final_Project/FinalProject/FinalProject/fs.cfg", "r");
     char save_dir[1024];
     save_dir[0] = '\0';
 
