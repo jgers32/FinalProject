@@ -22,17 +22,23 @@ void readFile(char * path) {
     }
 
     FILE * stream = fopen(path, "r");
-    int fileLength = 0;
-    char file[1024];
-    file[0] = '\0';
+    if (stream != 0) {
+        int fileLength = 0;
+        char file[1024];
+        file[0] = '\0';
 
-    while (fgets(fileContents, BUFFER_SIZE, stream)) {
-        fileLength += strlen(fileContents);
-        strcat(file, fileContents);
+        while (fgets(fileContents, BUFFER_SIZE, stream)) {
+            fileLength += strlen(fileContents);
+            strcat(file, fileContents);
+        }
+
+        printf("%d:%s", fileLength, file);
+        fclose(stream);
+    }
+    else {
+        printf("0:");
     }
 
-    printf("%d:%s", fileLength, file);
-    fclose(stream);
     free(fileContents);
 }
 
