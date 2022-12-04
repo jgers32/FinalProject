@@ -16,7 +16,7 @@
 
 // read function
 void readFile(char * path) {
-    char * string = malloc(BUFFER_SIZE);
+    char * fileContents = malloc(BUFFER_SIZE);
 
     // removes newline character in path
     for (int i = 0; ; i++) {
@@ -31,14 +31,14 @@ void readFile(char * path) {
     char file[1024];
     file[0] = '\0';
 
-    while (fgets(string, BUFFER_SIZE, stream)) {
-        fileLength += strlen(string);
-        strcat(file, string);
+    while (fgets(fileContents, BUFFER_SIZE, stream)) {
+        fileLength += strlen(fileContents);
+        strcat(file, fileContents);
     }
 
     printf("%d:%s", fileLength, file);
     fclose(stream);
-    free(string);
+    free(fileContents);
 }
 
 // write function
@@ -86,7 +86,7 @@ int main() {
     char * filename = malloc(32);
     char * contents = malloc(32);
     char * path = malloc(BUFFER_SIZE);
-    char * string = malloc(BUFFER_SIZE);
+    char * input = malloc(BUFFER_SIZE);
 
     // relative vs. absolute path
     //FILE * config = fopen("fs.cfg", "r");
@@ -95,8 +95,8 @@ int main() {
     char save_dir[1024];
     save_dir[0] = '\0';
 
-    while (fgets(string, BUFFER_SIZE, config)) {
-        strcat(save_dir, string);
+    while (fgets(input, BUFFER_SIZE, config)) {
+        strcat(save_dir, input);
     }
 
     // removes newline character in save_dir so path is correct
@@ -175,5 +175,5 @@ int main() {
     free(filename);
     free(contents);
     free(path);
-    free(string);
+    free(input);
 }
